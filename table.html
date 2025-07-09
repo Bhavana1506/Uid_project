@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #9d83a7;
+}
+</style>
+</head>
+<body>
+
+<h2>Know your skin type</h2>
+
+<p>The Bare Face Method</p>
+<ol type="1">
+    <li>Start by washing your face with a mild cleanser and face wash.</li><br>
+    <li>Pat it dry and don't apply any product. </li><br>
+    <li>Leave it bare for about 30 minutes and then start your skin test.</li>
+</ol>
+<button type="button" class="collapsible">Dry skin</button>
+<div class="content">
+  <p> If your skin feels parched or tight when you smile, it's most likely that you have dry skin. </p>
+</div>
+<button type="button" class="collapsible">Normal Skin</button>
+<div class="content">
+  <p>If you notice a slight shine on your nose and forehead then you have normal skin. </p>
+</div>
+<button type="button" class="collapsible">Oily</button>
+<div class="content">
+  <p>And if there is a lot of shine on your nose, forehead and cheeks, then you might have oily skin. </p>
+</div>
+<button type="button" class="collapsible">Combination</button>
+<div class="content">
+  <p>If you have a combination skin type, then the skin will get oily around T Zone. </p>
+</div>
+<button type="button" class="collapsible">Sensitive</button>
+<div class="content">
+  <p> If your skin is a little itchy or red in tone, then you are most likely to have sensitive skin. </p>
+</div>
+
+<p>The Blotting Sheet Method</p>
+<ol type="1">
+    <li>Just take some good-quality blotting paper and try to gently pat on different areas of your face. 
+        Make sure you gently dab/pat and not swipe.</li><br>
+    <li>Hold the sheet up to the light.</li>    
+
+</ol>
+<button type="button" class="collapsible">Dry skin</button>
+<div class="content">
+  <p>  If you can see no oil on it, then you have a dry skin type. </p>
+</div>
+<button type="button" class="collapsible">Normal Skin</button>
+<div class="content">
+  <p>If the paper in it has a bit of oil, then you have a normal skin type. </p>
+</div>
+<button type="button" class="collapsible">Oily</button>
+<div class="content">
+  <p>If the paper is soaked in the oil, then you are most likely to have an oily skin type. </p>
+</div>
+<button type="button" class="collapsible">Combination</button>
+<div class="content">
+  <p>If you have a combination skin type, you will see oil from your nose, forehead, and chin only. </p>
+</div>
+<button type="button" class="collapsible">Sensitive</button>
+<div class="content">
+  <p> If your skin is a little itchy or red in tone, then you are most likely to have sensitive skin. </p>
+</div>
+
+
+
+
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

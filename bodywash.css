@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(217, 190, 235);
+    background-image: url(bppp.jpg);
+    background-repeat: no-repeat;
+    image-resolution: 100%;
+    background-size: contain;
+    /* background-color: linear-gradient(to right, #c175ce,#414a51); */
+    
+    
+    
+  }
+  img:hover {
+    transform : scale(1.2);
+}
+  
+  h1 {
+    color: #070404;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  h2 {
+    color: #434242;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    color: #555;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  p {
+    color: #000000;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .buttons {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .buttons .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .image-item {
+    margin-bottom: 20px;
+  }
+  
+  .image-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  

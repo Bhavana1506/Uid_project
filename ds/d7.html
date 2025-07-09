@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .hash-table {
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .hash-table h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .hash-table label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+            text-align: left;
+        }
+
+        .hash-table input[type="text"],
+        .hash-table input[type="number"],
+        .hash-table input[type="submit"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hash-table input[type="text"]:focus,
+        .hash-table input[type="number"]:focus,
+        .hash-table input[type="submit"]:hover {
+            border-color: #4CAF50;
+        }
+
+        .hash-table input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .hash-table .result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            overflow: auto;
+        }
+
+        @media (max-width: 400px) {
+            .hash-table {
+                width: 90%;
+                margin: 30px auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hash-table">
+        <h3>Hash Table</h3>
+        <label for="tableSizeInput">Table Size:</label>
+        <input type="number" id="tableSizeInput" value="10">
+        <label for="keyInput">Key:</label>
+        <input type="text" id="keyInput">
+        <label for="valueInput">Value:</label>
+        <input type="text" id="valueInput">
+        <input type="submit" value="Add" onclick="addItem()">
+        <input type="submit" value="Remove" onclick="removeItem()">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Hash table implementation
+        class HashTable {
+            constructor(size) {
+                this.size = size;
+                this.table = new Array(size);
+            }
+
+            // Calculate the hash value for a given key
+            hash(key) {
+                let hashValue = 0;
+                for (let i = 0; i < key.length; i++) {
+                    hashValue += key.charCodeAt(i);
+                }
+                return hashValue % this.size;
+            }
+
+            // Add an item to the hash table
+            add(key, value) {
+                const index = this.hash(key);
+                this.table[index] = value;
+            }
+
+            // Remove an item from the hash table
+            remove(key) {
+                const index = this.hash(key);
+                this.table[index] = null;
+            }
+        }
+
+        // Create a hash table instance
+        let hashTable;
+
+        // Function to handle the add button click event
+        function addItem() {
+            const keyInput = document.getElementById("keyInput");
+            const valueInput = document.getElementById("valueInput");
+            const key = keyInput.value;
+            const value = valueInput.value;
+
+            if (key !== "" && value !== "") {
+                hashTable.add(key, value);
+                displayHashTable();
+            }
+
+            keyInput.value = "";
+            valueInput.value = "";
+        }
+
+        // Function to handle the remove button click event
+        function removeItem() {
+            const keyInput = document.getElementById("keyInput");
+            const key = keyInput.value;
+
+            if (key !== "") {
+                hashTable.remove(key);
+                displayHashTable();
+            }
+
+            keyInput.value = "";
+        }
+
+        // Function to handle the table size change event
+        function changeTableSize() {
+            const tableSizeInput = document.getElementById("tableSizeInput");
+            const tableSize = parseInt(tableSizeInput.value);
+
+            if (!isNaN(tableSize) && tableSize > 0) {
+                hashTable = new HashTable(tableSize);
+                displayHashTable();
+            }
+
+            tableSizeInput.value = hashTable.size;
+        }
+
+        // Display the hash table
+        function displayHashTable() {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            const table = hashTable.table;
+            for (let i = 0; i < hashTable.size; i++) {
+                const itemDiv = document.createElement("div");
+                itemDiv.textContent = table[i] !== null ? table[i] : "-";
+                resultDiv.appendChild(itemDiv);
+            }
+        }
+
+        // Initial setup
+        const tableSizeInput = document.getElementById("tableSizeInput");
+        const initialTableSize = parseInt(tableSizeInput.value);
+        hashTable = new HashTable(initialTableSize);
+        tableSizeInput.addEventListener("change", changeTableSize);
+        displayHashTable();
+    </script>
+</body>
+</html>

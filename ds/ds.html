@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stack Operations</title>
+  <style>
+    
+    h1{
+        font-size: 333.33%;
+        text-align:center;
+        font-family: 'century gothic';
+    color: #090909;
+
+    }
+    input{
+        font-size: 133.333%;
+    }
+    button{
+        font-size: 133.3333%;
+        margin-left: 5px;
+        margin-right: 5px;
+       
+    }
+    .log{
+      border-radius: 20px;
+      background-image: linear-gradient(to right, rgb(167, 204, 213,0.2), rgb(85, 189, 227,0.2));
+      border:none;
+      width:40%;
+      margin:auto;
+      padding-top: 7.5px;
+      padding-bottom: 7.5px;
+    }
+    .log h2{
+             border:  0 0 25px black;
+    }
+    .container {
+      margin-top: 66.666px;
+      text-align: center;
+    }
+
+    button {
+        color:rgb(17, 17, 17);
+        margin-left: 10px;
+        margin-top: 15px;
+        
+    }
+    button:hover{
+        transform: scale(1.1);
+        
+    }
+
+    #stack {
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      min-height: 100px;
+      margin-top: 10px;
+      position: relative;
+      width: 50%;
+      margin-left: 20%;
+      color: rgb(251, 220, 240);
+      font-size: 165%;
+      background-color: rgb(239, 205, 229);
+
+    }
+
+    .pointer-text {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight:1px solid black;
+    }
+    .pointer-text:before {
+      content: '\2191'; 
+    }
+    .pointer-text.top:before {
+      content: '\2193'; 
+    }
+
+    .stack-element {
+      border: 5px solid #040000;
+      border-radius: 25px;
+      background-image: linear-gradient(to right, rgb(6, 6, 6), rgb(22, 23, 23));
+      padding: 5px;
+      margin:auto;
+      margin-top: 5px;
+      position: relative;
+      text-align: center;
+      width: max-content;
+      min-width: 25%;
+      
+      font-weight: bold;
+    }
+    
+    .index-position {
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 100%;
+      font-weight: normal;
+    }
+    
+    .value {
+      margin-left: 10px;
+    }
+  </style>
+  <script type="text/javascript">
+    let stack = [];
+    let maxElements = 5;
+    
+    function OnFocusInput (input) {
+ 
+ input.style.color = "brown";
+ input.style.background="beige";
+}
+
+
+
+
+    function push() {
+      const inputValue = document.getElementById("inputValue").value;
+      if (inputValue !== "" && stack.length < maxElements) {
+        stack.push(inputValue);
+        document.getElementById("update").innerHTML="The element " + inputValue + " has been pushed into the stack!";
+        displayStack();
+        document.getElementById("inputValue").value = "";
+      }
+      if (stack.length >=maxElements)
+      {
+        document.getElementById("update").innerHTML="Stack Overflow!! The Stack is full";
+      }y
+    }
+
+    function pop() {
+      if (stack.length > 0) {
+        document.getElementById("update").innerHTML="The element " + stack.pop() + " has been popped!";
+        displayStack();
+      }
+      else{
+        document.getElementById("update").innerHTML="Stack Underflow!! The Stack is Empty";
+      }
+    }
+
+    function topElement() {
+      if (stack.length > 0) {
+        document.getElementById("update").innerHTML="Top Element : " + stack[stack.length - 1];
+      }
+      else{
+        document.getElementById("update").innerHTML="Stack Underflow!! The Stack is Empty";
+      }
+    }
+
+    function clearStack() {
+      if(stack.length==0)
+      {
+        document.getElementById("update").innerHTML="Stack Underflow!! The Stack is Empty";
+
+      }
+      else{
+        document.getElementById("update").innerHTML="The Stack has been cleared!";
+      stack = [];
+      displayStack();
+      }
+      
+    }
+
+    
+
+    function displayStack() {
+      
+      const stackDiv = document.getElementById("stack");
+      stackDiv.innerHTML = '<p class="pointer-text top">Top</p>';
+
+      for (let i = stack.length - 1; i >= 0; i--) {
+        const stackElement = document.createElement("div");
+        stackElement.classList.add("stack-element");
+        
+        const indexPosition = document.createElement("span");
+        indexPosition.classList.add("index-position");
+        indexPosition.textContent = i;
+        
+        const value = document.createElement("span");
+        value.classList.add("value");
+        value.textContent = stack[i];
+        
+        stackElement.appendChild(indexPosition);
+        stackElement.appendChild(value);
+        
+        stackDiv.appendChild(stackElement);
+      }
+
+      stackDiv.innerHTML += '<p class="pointer-text">Bottom</p>';
+
+      const maxElementsDisplay = document.getElementById("maxElementsDisplay");
+      maxElementsDisplay.textContent = "Max Elements: " + maxElements;
+    }
+  </script>
+</head>
+<body style="background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUXFRcaFRUYFxcVFRoVFxUaFxUbHhUYHSggGBolHRUVITEiJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NFQ8PFSsdFR0tLS0tLS0rLSstLSstLS0tLTctNy0tLTctNy03LS0tLS0tLSs3LS0tLS0tLS0tKy0tK//AABEIASsAqAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAAAQIH/8QAJBABAQEBAAEDAwUBAAAAAAAAAAER8GFRobFBcdECMZHB4SH/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQQD/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A6up3eEc2oAQNAACALEWVFFO7yiggvd5QAABe+fcvd6nfPuCVe+fdKtAolEFtE1be76KItQQVKuoBAAIvfHuRNUAEAABe7yhAXu8mmiiLS93qUEoCAC1RDCqghTSgBooLEVBIEAWd+fuizvyihQVAp3+paAUVABUAoVVEqoIAEBQ77IoQF74BIuJFAiLEAoCAuoKACBQAAAXvkp3yVQQEFMBRFiAACBCCwEKAKgud/P8A0EAAAAVABUq0EMKALUIoQxSAkCAAUxAIAFAAq4lAAADAAKoogKgkABcO7wJigQEAAAMAAoAuIKFCiAt7vVKAqVRRKuBAQBBUWIoL3eEi93hBAAVKAAABipQUBRNAQDQBUKRQAQWJAAIACxAAF7vAIFAFQACgFAAVFUEKIAKCBAAFBCLEAXu8JpoCoAFKUAKAUNAVNFUTQEFTQACKCAABAAVAAAKXvcKAAC1AAAAIABBQQ0WKIEEAAAFASqUEKvf4UAQUAwQAwAAAMXBQxIsSIAQAAACAC0qAFVKoAIAAAUADCAqYYQFQAAAIEFCi4liAqALUqpVDAwQWxCgFAAABQiVQMUiCQAAMXu8gioKBQQMAoAAAt7vRADAACKCLQUSEAAipEAFUTDF7vJ3eQQW93qd3lBCi0EoALvfz7IFAAAUt78IoKioIppFEgEAAQAAKt7vVF3u+qhRBAoAFUvdv7IoaFEFSKaoIuoBoqICzu9UWUEFQCUF0E00NAKqAaACo1+r6/fGaoC/q+p+qfv8Af8oJq6eqKAtRBUavxmezKgup3wRBUWd7GfCiKX+iT4QQX8E/qghVve6ACoD/2Q==);">
+  <h1>Stack Operations</h1>
+  <div class="container">
+    
+    <div>
+      ENTER A VALUE:<input type="text" id="inputValue"  onfocus="OnFocusInput (this)" onblur="OnBlurInput (this)">
+      <br>
+      <button onclick="push()">Push</button>
+      <button onclick="pop()">Pop</button>
+      <button onclick="topElement()">Top</button>
+      <button onclick="clearStack()">Clear Stack</button>
+      <br><br>
+    </div>
+    <div class="log">
+   
+    <h2 style="color:rgb(210, 115, 115);margin-bottom: 3.33px;" id="max">Updates : </h2>
+    <h2 style="color:rgb(210, 115, 115);margin-bottom: 3.33px;" id="update"></h2>
+  </div>
+    <div id="stack"></div>
+  </div>
+</body>
+</html>

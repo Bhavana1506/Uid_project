@@ -1,0 +1,37 @@
+.a{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)) ,url(bg02HC.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+    .body{
+        width: 100%;
+        height: 100%;
+        animation: changeBg 10s linear infinite;
+        display: grid;
+        place-items: center;
+     
+    }
+    @keyframes changeBg {
+        0%{
+            background-color: rgb(224, 203, 218);
+        }
+        20%{
+            background-color: rgb(185, 131, 171);
+        }
+        40%{
+            background-color: rgb(182, 222, 232);
+        }
+        60%{
+            background-color: rgb(125, 173, 187);
+        }
+        80%{
+            background-color: rgb(215, 184, 234);
+        }
+        100%{
+            background-color: rgb(224, 203, 218);
+        }
+
+    }

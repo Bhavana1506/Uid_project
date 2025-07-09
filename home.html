@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Skin Care Blog</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="img.css">
+</head>
+
+<body>
+  <nav>
+    <center>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="https://www.stylecraze.com/articles/best-beauty-blogs/">Blog</a></li>
+      </ul>
+      <div class="login">
+        <button id="openButton" style = "position:absolute; right:80px; top:20px">Signup/Login</button>
+        <script>
+          // Get the button element
+          var button = document.getElementById('openButton');
+  
+          // Add a click event listener to the button
+          button.addEventListener('click', function () {
+            // Open the new web page in a new window or tab
+            window.open('login.html', '_blank');
+          });
+        </script>
+    </center>
+    
+
+      
+
+    </div>
+  </nav>
+  <header>
+    <h1>Skincare Blog</h1>
+    <br>
+    <span><img class="logo" src="logo.jpg" alt="img not found"></span>
+  </header>
+  <br><br><br><br><br><br>
+  <section id="hero">
+    <div class="hero-text">
+      <!-- <h2>Welcome to the Skincare Blog</h2> -->
+      <p>Discover the best tips, tricks, and products for a luxurious bath and body care routine.</p>
+      <a href="homepage.html" class="button">Face</a>
+      <a href="back.html" class="button">Body</a>
+      <a href="hair1.html" class="button">Hair</a>
+
+    </div>
+  </section>
+  <div class="carousel">
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="q1.jpg">
+        </div>
+
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="q2.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="q3.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="q4.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="bg10HC.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="bg11HC.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="bg12HC.jpg">
+        </div>
+      </div>
+    </a>
+    <a class="carousel-item" href="#">
+      <div class="testi">
+        <div class="img-area">
+          <img src="bg13HC.jpg">
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.carousel').carousel({
+        padding: 200
+      });
+      autoplay();
+      function autoplay() {
+        $('.carousel').carousel('next');
+        setTimeout(autoplay, 4500);
+      }
+    });
+  </script>
+
+  <footer>
+    <p>&copy; Skin care Blogs. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+#members_hz {
+    overflow:hidden;
+}
+
+#members_hz img {
+    position:relative;
+    left:30px;
+    display:inline;
+    margin: 0 15px;
+}

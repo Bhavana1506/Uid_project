@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ba.css">
+</head>
+<body>
+    <div class="main">
+        <nav>
+            <!-- <div class="logo">
+                <img src="l1.jpg" alt="img not found" height="80px">
+
+            </div> -->
+            <div class="nav-links">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">Importance</a></li>
+                    <!-- <li><a href="blog.html">Blog</a></li> -->
+                </ul>
+            </div>
+        </nav>
+        <div class="information">
+            <div class="overlay">
+
+            </div>
+            <!-- <img src="a1.avif" alt="not found" class="bodycare"> -->
+            <div id="circle">
+                <div class="feature one">
+                    <!-- <img src="bw.png" alt="not found"> -->
+                    <div>
+                        <a href="bodywash.html"><h1>Body Wash</h1></a>
+                    </div>
+                </div>
+                <div class="feature two">
+                    <!-- <img src="moi.png" alt="not found"> -->
+                    <div>
+                       <a href="bodymoisturiser.html"> <h1>Body Moisturizer</h1></a>
+                    </div>
+                </div>
+                <div class="feature three">
+                    <!-- <img src="sc.png" alt="not found"> -->
+                    <div>
+                       <a href="bodyscrub.html"><h1>Body scrub</h1></a> 
+                    </div>
+                </div>
+                <div class="feature four">
+                    <!-- <img src="sun.avif" alt="not found"> -->
+                    <div>
+                    <a href="bodysunscreen.html"><h1>Body sunscreen</h1></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <img src="arrow.png" alt="not found" id="upbtn">
+            <h3>...</h3>
+            <img src="arrow.png" alt="not found" id="dwbtn">
+        </div>
+
+    </div>
+    <script>
+        var circle = document.getElementById("circle");
+        var upbtn = document.getElementById("upbtn");
+        var dwbtn = document.getElementById("dwbtn");
+
+        var rotatevalue = circle.style.transform;
+        var rotatesum;
+
+        upbtn.onclick=function()
+        {
+            rotatesum = rotatevalue + "rotate(-90deg)"
+            circle.style.transform = rotatesum;
+            rotatevalue = rotatesum;
+        }
+        dwbtn.onclick=function()
+        {
+            rotatesum = rotatevalue + "rotate(90deg)"
+            circle.style.transform = rotatesum;
+            rotatevalue = rotatesum;
+        }
+    </script>
+</body>
+</html>

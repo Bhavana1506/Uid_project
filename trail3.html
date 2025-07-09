@@ -1,0 +1,93 @@
+<html>
+    <head>
+
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+            
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+            
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
+            </script>
+            
+            <style>
+                .mySlides {display:none;}
+                </style>
+
+
+
+    </head>
+
+
+
+
+    <body>
+        <h3>Oily</h3>
+        <h2 class="w3-center">Manual Slideshow</h2>
+
+<div class="w3-content w3-display-container">
+  <!-- <img class="mySlides" src="1.jpg" style="width:100%">
+  <img class="mySlides" src="1234.jpg" style="width:100%">
+  <img class="mySlides" src="3.jpg" style="width:100%">
+  <img class="mySlides" src="6.jpg" style="width:100%"> -->
+
+  <a href="https://www.nykaa.com/cetaphil-cleansing-lotion/p/22032?productId=22032&pps=1&skuId=22031" target="_blank" >
+    <img src="cetaphil.png" height="300px" width="300px" style="border: 5px solid black;"> 
+</a><br>
+<input type="button" value="Buy Product " onclick="one();" class="mySlides" /><br><br>
+
+<a href="https://www.nykaa.com/minimalist-2percent-salicylic-acid-lha-face-cleanser-for-oil-control-acne/p/1467106?productId=1467106&pps=4" target="_blank">
+    <img src="minisalicylic.png" height="300px" width="300px" style="border: 5px solid black;">
+</a> <br> 
+<input type="button" value="Buy Product " onclick="two();" class="mySlides"/><br><br>
+
+<a href="https://www.nykaa.com/nykaa-naturals-haldi-chandan-face-wash/p/960062?productId=960062&pps=31" target="_blank" >
+    <img src="nykaahaldi.png" height="300px" width="300px" style="border: 5px solid black;">
+</a>  <br>
+<input type="button" value="Buy Product " onclick="three();" class="mySlides"/><br><br>
+
+<a href="https://www.nykaa.com/mamaearth-vitamin-c-face-wash-with-vitamin-c-and-turmeric-for-skin-illumination/p/3595453?productId=3595453&pps=23&skuId=995443" target="_blank" >
+    <img src="mamaearthvitc.png" height="300px" width="300px" style="border: 5px solid black;">
+</a><br>
+<input type="button" value="Buy Product " onclick="four();" class="mySlides"/><br><br>
+
+<a href="https://www.nykaa.com/biotique-bio-honey-gmel-refresingm-foamingm-face-wash/p/464884?productId=464884&pps=18&skuId=464883" target="_blank" >
+    <img src="biotiquehoney.jpg" height="300px" width="300px" style="border: 5px solid black;">
+</a>  <br>
+<input type="button" value="Buy Product " onclick="five();" class="mySlides"/><br><br>
+
+
+
+
+
+
+
+
+
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+

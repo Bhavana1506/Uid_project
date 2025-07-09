@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #c175ce,#8ecdff);
+            background-color: #f5f5f5;
+        }
+
+        .circular-queue {
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .circular-queue h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .circular-queue label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+            text-align: left;
+        }
+
+        .circular-queue input[type="number"],
+        .circular-queue input[type="submit"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .circular-queue input[type="number"]:focus,
+        .circular-queue input[type="submit"]:hover {
+            border-color: #eb8dc5;
+        }
+
+        .circular-queue input[type="submit"] {
+            background-color: #9299dbaf;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .circular-queue .result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            overflow: auto;
+        }
+
+        .circular-queue .result .circular-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .circular-queue .result .circular-list .list-item {
+            padding: 5px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            margin: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .circular-queue .result .circular-list .list-item.front {
+            background-color: #66ceed; /* Highlighted color for front pointer */
+            animation: blink 1s infinite;
+        }
+
+        .circular-queue .result .circular-list .list-item.rear {
+            background-color: #da79a6; /* Highlighted color for rear pointer */
+            animation: blink 1s infinite reverse;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .circular-queue {
+                width: 90%;
+                margin: 30px auto;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .circular-queue input[type="submit"] {
+                font-size: 12px;
+            }
+
+            .circular-queue .result .circular-list .list-item {
+                font-size: 12px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circular-queue">
+        <h3 style="font-family:Georgia, 'Times New Roman', Times, serif">Circular Queue</h3>
+        <label for="queueSizeInput">Queue Size:</label>
+        <input type="number" id="queueSizeInput" value="6">
+        <label for="numberInput">Enter a number:</label>
+        <input type="number" id="numberInput">
+        <input type="submit" value="Enqueue" onclick="enqueueNumber()">
+        <input type="submit" value="Dequeue" onclick="dequeueNumber()">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Circular queue implementation
+        class CircularQueue {
+            constructor(size) {
+                this.size = size;
+                this.queue = new Array(size);
+                this.front = -1;
+                this.rear = -1;
+            }
+
+            // Check if the queue is empty
+            isEmpty() {
+                return this.front === -1 && this.rear === -1;
+            }
+
+            // Check if the queue is full
+            isFull() {
+                return (this.rear + 1) % this.size === this.front;
+            }
+
+            // Enqueue a number into the circular queue
+            enqueue(number) {
+                if (this.isFull()) {
+                    return false; // Queue is full, cannot enqueue
+                }
+
+                if (this.isEmpty()) {
+                    this.front = 0;
+                    this.rear = 0;
+                } else {
+                    this.rear = (this.rear + 1) % this.size;
+                }
+
+                this.queue[this.rear] = number;
+                return true;
+            }
+
+            // Dequeue a number from the circular queue
+            dequeue() {
+                if (this.isEmpty()) {
+                    return null; // Queue is empty, nothing to dequeue
+                }
+
+                const number = this.queue[this.front];
+                if (this.front === this.rear) {
+                    // Last element in the queue
+                    this.front = -1;
+                    this.rear = -1;
+                } else {
+                    this.front = (this.front + 1) % this.size;
+                }
+
+                return number;
+            }
+        }
+
+        // Create a circular queue instance
+        let circularQueue;
+
+        // Function to handle the enqueue button click event
+        function enqueueNumber() {
+            const numberInput = document.getElementById("numberInput");
+            const number = parseInt(numberInput.value);
+
+            if (!isNaN(number)) {
+                const isEnqueued = circularQueue.enqueue(number);
+                if (!isEnqueued) {
+                    alert("Queue is full. Cannot enqueue more numbers.");
+                }
+                displayCircularQueue();
+            }
+
+            numberInput.value = "";
+        }
+
+        // Function to handle the dequeue button click event
+        function dequeueNumber() {
+            const dequeuedNumber = circularQueue.dequeue();
+            if (dequeuedNumber === null) {
+                alert("Queue is empty. Cannot dequeue from an empty queue.");
+            }
+            displayCircularQueue();
+        }
+
+        // Function to handle the queue size change event
+        function changeQueueSize() {
+            const queueSizeInput = document.getElementById("queueSizeInput");
+            const queueSize = parseInt(queueSizeInput.value);
+
+            if (!isNaN(queueSize) && queueSize > 0) {
+                circularQueue = new CircularQueue(queueSize);
+                displayCircularQueue();
+            }
+
+            queueSizeInput.value = circularQueue.size;
+        }
+
+        // Display the circular queue
+        function displayCircularQueue() {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            if (circularQueue.isEmpty()) {
+                const emptyQueueDiv = document.createElement("div");
+                emptyQueueDiv.className = "circular-list";
+                const listItem = document.createElement("div");
+                listItem.className = "list-item";
+                listItem.textContent = "-";
+                emptyQueueDiv.appendChild(listItem);
+                resultDiv.appendChild(emptyQueueDiv);
+            } else {
+                const circularListDiv = document.createElement("div");
+                circularListDiv.className = "circular-list";
+
+                for (let i = 0; i < circularQueue.size; i++) {
+                    if (circularQueue.queue[i] !== undefined) {
+                        const listItem = document.createElement("div");
+                        listItem.className = "list-item";
+                        listItem.textContent = circularQueue.queue[i];
+
+                        if (i === circularQueue.front) {
+                            listItem.classList.add("front");
+                        }
+
+                        if (i === circularQueue.rear) {
+                            listItem.classList.add("rear");
+                        }
+
+                        circularListDiv.appendChild(listItem);
+                    }
+                }
+
+                resultDiv.appendChild(circularListDiv);
+            }
+        }
+
+        // Initial setup
+        const queueSizeInput = document.getElementById("queueSizeInput");
+        const initialQueueSize = parseInt(queueSizeInput.value);
+        circularQueue = new CircularQueue(initialQueueSize);
+        queueSizeInput.addEventListener("change", changeQueueSize);
+        displayCircularQueue();
+    </script>
+</body>
+</html>
